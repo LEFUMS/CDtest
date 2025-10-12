@@ -12,6 +12,8 @@ spec:
       labels:
         app: hello-world
     spec:
+      imagePullSecrets:
+      - name: acr-credentials
       containers:
       - name: hello-world
         image: testclusterregistry.azurecr.io/hello-world:1.0.0
