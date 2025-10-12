@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: testclusterregistry.azurecr.io/hello-world:__IMAGE_TAG__
+        image: testclusterregistry.azurecr.io/hello-world:1.0.0
         ports:
         - containerPort: 80
