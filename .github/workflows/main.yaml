@@ -30,12 +30,16 @@ jobs:
     - name: 'Update deployment file'
       run: |
         sed -i 's/__ACR_NAME__/${{ secrets.ACR_NAME }}/g' k8s/deployment.yaml
-        sed -i 's/__IMAGE_TAG__/${{ github.sha }}/g' k8s/deployment.yaml
+        sed -i "s|image: .*/hello-world:.*|image: ${{ secrets.ACR_NAME }}.azurecr.io/hello-world:${{ github.sha }}|g" k8s/deployment.yaml
 
     - name: 'Commit and push updated deployment file'
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git add k8s/deployment.yaml
-        git commit -m 'Update deployment image tag'
-        git push
+        if git diff-index --quiet HEAD; then
+          echo "No changes to commit."
+        else
+          git commit -m "Update deployment image tag to ${{ github.sha }} [skip ci]"
+          git push
+        fi
