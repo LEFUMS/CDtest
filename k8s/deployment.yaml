@@ -16,6 +16,6 @@ spec:
       - name: acr-credentials
       containers:
       - name: hello-world
-        image: __ACR_NAME__.azurecr.io/hello-world:__IMAGE_TAG__
+        image: testclusterregistry.azurecr.io/hello-world:15a349b745712487f0881afe08ee66c75c49693a
         ports:
         - containerPort: 80
