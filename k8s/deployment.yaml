@@ -13,7 +13,7 @@ spec:
         app: hello-world
     spec:
       imagePullSecrets:
-      - name: acr-credentials
+      - name: acr-creds
       containers:
       - name: hello-world
         image: testclusterregistry.azurecr.io/hello-world:498ded5cc8c19e71acf7c65e8f51c78095d57232
