@@ -18,19 +18,19 @@ jobs:
     - name: 'Login to Azure Container Registry'
       uses: azure/docker-login@v1
       with:
-        login-server: ${{ secrets.ACR_NAME }}.azurecr.io
-        username: ${{ secrets.ACR_USERNAME }}
-        password: ${{ secrets.ACR_PASSWORD }}
+        login-server: ${{ secrets.ACR_NAMEUNI }}.azurecr.io
+        username: ${{ secrets.ACR_USERNAMEUNI }}
+        password: ${{ secrets.ACR_PASSWORDUNI }}
 
     - name: 'Build and push image'
       run: |
-        docker build . -t ${{ secrets.ACR_NAME }}.azurecr.io/hello-world:${{ github.sha }}
-        docker push ${{ secrets.ACR_NAME }}.azurecr.io/hello-world:${{ github.sha }}
+        docker build . -t ${{ secrets.ACR_NAMEUNI }}.azurecr.io/hello-world:${{ github.sha }}
+        docker push ${{ secrets.ACR_NAMEUNI }}.azurecr.io/hello-world:${{ github.sha }}
 
     - name: 'Update deployment file'
       run: |
-        sed -i 's/__ACR_NAME__/${{ secrets.ACR_NAME }}/g' k8s/deployment.yaml
-        sed -i "s|image: .*/hello-world:.*|image: ${{ secrets.ACR_NAME }}.azurecr.io/hello-world:${{ github.sha }}|g" k8s/deployment.yaml
+        sed -i 's/__ACR_NAMEUNI__/${{ secrets.ACR_NAMEUNI }}/g' k8s/deployment.yaml
+        sed -i "s|image: .*/hello-world:.*|image: ${{ secrets.ACR_NAMEUNI }}.azurecr.io/hello-world:${{ github.sha }}|g" k8s/deployment.yaml
 
     - name: 'Commit and push updated deployment file'
       run: |
