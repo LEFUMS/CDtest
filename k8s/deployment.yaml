@@ -16,6 +16,6 @@ spec:
       - name: acr-creds
       containers:
       - name: hello-world
-        image: caplucxcontainerregistry.azurecr.io/hello-world:f4bbde6a524984ee35a0c045a1e555e13ebcb2ac
+        image: caplucxcontainerregistry.azurecr.io/hello-world:2e8ee06d73ec0d34ee080458d45a264888b23caf
         ports:
         - containerPort: 80
