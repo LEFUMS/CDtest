@@ -19,5 +19,3 @@ spec:
         image: caplucxcontainerregistry.azurecr.io/hello-world:4955e03ec57b2e9df62344606b067d818f136ac5
         ports:
         - containerPort: 80
-      secretRef:
-        name: oci-creds
